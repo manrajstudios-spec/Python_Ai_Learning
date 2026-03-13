@@ -46,7 +46,7 @@ print(fruits)
 """
 
 #------------Arrays-------------
-""""import array
+import array
 
 numbers = array.array('i' ,[0,2,3,4,5])
 
@@ -56,8 +56,9 @@ nums = numbers[0:6:2]
 
 for i in numbers:
     if(i==3):
-        numbers.remove(i)
-print(numbers)"""
+        numbers.pop(i)
+
+print(numbers)
 
 #----------touple----------------
 #just unchangeable list 
