@@ -17,10 +17,11 @@ for i in "Manraj Singh":
 row = 5
 coloumn = 5
 
-for i in range(row):
+#-------solid square---------
+"""for i in range(row):
     for j in range(coloumn):
         print("*" , end="")      
-    print()
+    print()"""
 #-------empty sqaure-------
 """ 
 for i in range(row):
@@ -99,3 +100,24 @@ for i in range(4):
     print() 
 """
 
+#---------Star---------
+"""
+for i in range(5):
+    for j in range(5):
+        if i==j or i+j ==5-1:
+            print("*" , end="")
+        else:
+            print(" ",end="")
+    print()"""
+
+
+#---------plus---------
+"""
+for i in range(5):
+    for j in range(5):
+        if(i ==2):
+            print("*",end="")
+        else:
+            if j == 2:
+                print("  " + "*",end="")
+    print()"""
