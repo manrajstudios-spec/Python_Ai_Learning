@@ -37,3 +37,8 @@ print(site_name)"""
 #--------------------
 
 
+name = "manraj singh"
+
+name = name.capitalize()
+
+print(name)
