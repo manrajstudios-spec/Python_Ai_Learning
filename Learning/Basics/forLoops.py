@@ -1,29 +1,26 @@
 import time
 import math
-'''
 for i in range(10,0,-1):
     print(i)
     time.sleep(1)
 print("hey yo")
 
-'''
-'''
 for i in range(50,100+1,2):
     print(i)
 
 for i in "Manraj Singh":
-    print(i)'''
+    print(i)
 
 row = 5
 coloumn = 5
 
 #-------solid square---------
-"""for i in range(row):
+for i in range(row):
     for j in range(coloumn):
         print("*" , end="")      
-    print()"""
+    print()
 #-------empty sqaure-------
-""" 
+ 
 for i in range(row):
     for j in range(coloumn):
         if i==0 or i ==row-1:
@@ -33,19 +30,19 @@ for i in range(row):
                 print("*",end="")
             else:
                 print(" " , end="")
-    print()"""
+    print()
 
 #---------right triangle right side---------
-"""
+
 for i in range(5):
     for dash in range(5+(-i-1)):
         print(" ",end="")
     for star in range(i+1):
         print("*",end="")
-    print()"""
+    print()
 
 #--------up right pyramid---------
-"""
+
 for i in range(4):
     star = 2*i+1
     dash = 7-star
@@ -58,10 +55,10 @@ for i in range(4):
     print()
 
 for i in range(4):
-    print("_" * (4-i-1) + "*" * (2*i-1))"""
+    print("_" * (4-i-1) + "*" * (2*i-1))
 
 #------reverse pyramid---------
-"""
+
 for i in range(4):
     star = 7-2*i
     dash = 7 - star
@@ -72,10 +69,10 @@ for i in range(4):
         print("*" , end="")
     for dash1 in range(int(dash/2)):
         print("_" , end="")
-    print() """
+    print() 
 
 #------diamond-------
-"""
+
 
 for i in range(3):
     star = 2*i+1
@@ -98,21 +95,21 @@ for i in range(4):
     for dash1 in range(int(dash/2)):
         print("_" , end="")
     print() 
-"""
+
 
 #---------Star---------
-"""
+
 for i in range(5):
     for j in range(5):
         if i==j or i+j ==5-1:
             print("*" , end="")
         else:
             print(" ",end="")
-    print()"""
+    print()
 
 
 #---------plus---------
-"""
+
 for i in range(5):
     for j in range(5):
         if(i ==2):
@@ -120,4 +117,29 @@ for i in range(5):
         else:
             if j == 2:
                 print("  " + "*",end="")
-    print()"""
+    print()
+
+#--------------enumrate--------------
+
+name = "Manraj Singh"
+n = " "
+name = name.lower()
+for i,s in enumerate(name):
+    if i % 2 == 0:
+        n += s.upper()
+    else:
+        n += s
+print(n)
+
+
+#--------lopping through array ,list 
+
+#two ways simple looping and other enumrate
+
+lst = [1,2,4,5]
+
+for i,v in enumerate(lst):
+    if(v%2==0):
+        lst[i]=0
+
+print(lst)
