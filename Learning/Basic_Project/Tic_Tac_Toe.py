@@ -24,8 +24,8 @@ winning_combos = [
     [0,4,8],
     [2,4,6]
 ]
-positions_occupied_by_player = [0,2]
-positions_occupied_by_cpu  = [1,3]
+positions_occupied_by_player = []
+positions_occupied_by_cpu  = []
 possible_moves = [0,1,2,3,4,5,6,7,8]
 
 count = 0 
@@ -100,15 +100,22 @@ def GetCpuMove():
 
 def CanCpuWinInOneMove():
     matched_2 = False
-    for i,l in enumerate(winning_combos):
+    for lst in winning_combos:
         combo_position_matched = 0 
         for cp in positions_occupied_by_cpu:
-            if cp in l:
+            if cp in lst:
                 combo_position_matched += 1
-        if combo_position_matched == 2:
-            print(positions_occupied_by_cpu)
-            matched_2 = True
-            return True
+
+        if combo_position_matched == 2 :
+            for l in lst:
+                if l not in positions_occupied_by_player and l not in positions_occupied_by_cpu:
+                    print(positions_occupied_by_cpu)
+                    matched_2 = True
+                    return True
+                else:
+                    matched_2 = False
+        else:
+            matched_2 = False
         
     if(not matched_2):
         return False
@@ -116,37 +123,42 @@ def CanCpuWinInOneMove():
 def GetCounterPlayerPosition():
     matched_2 = False
     matched_1 = False
-        
-    for l in winning_combos:
-        matches = 0
+
+    for lst in winning_combos:
+
+        moves_matching_combo = 0
 
         for pm in positions_occupied_by_player:
-            if pm in l:
-                matches += 1
-
-        if matches == 2:
-            print("2 Matched Countering Move")
-
-            for p in l:
+            if pm in lst:
+                moves_matching_combo += 1
+        
+        if(moves_matching_combo == 2):
+            for p in lst:
                 if p not in positions_occupied_by_cpu and p not in positions_occupied_by_player:
+                    matched_2 = True
+                    time.sleep(0.4)
+                    print("2 Matched Countring Move")
+                    time.sleep(0.4)
                     return p
     
     if not matched_2:
-        for i,l in enumerate(winning_combos):
+        for lst in (winning_combos):
             moves_matching_combo = 0
             for pm in positions_occupied_by_player:
-                if pm in l:
+                if pm in lst:
                     moves_matching_combo += 1
         
-            if(moves_matching_combo == 1):
-                time.sleep(0.4)
-                print("1 Matched, Planning Countring Move")
-                time.sleep(0.4)
-            
-            for p in l:
-                if p not in positions_occupied_by_cpu and p not in positions_occupied_by_player:
-                    matched_1 = True
-                    return p
+            if(moves_matching_combo == 1):       
+                 for p in lst:
+                    if p not in positions_occupied_by_cpu and p not in positions_occupied_by_player:
+                        time.sleep(0.4)
+                        print("1 Matched, Planning Countring Move")
+                        time.sleep(0.4)
+                        matched_1 = True
+                        return p
+                
+    if not matched_1 and not matched_2:
+        return random.choice(GetPositionsNotOccupied())
     
 def CpuTurn():
     global is_player_turn
@@ -161,6 +173,7 @@ def CpuTurn():
     print("Wait CPU is Making A Move")
     time.sleep(1)
     print("Cpu Move Is")
+    DrawBoard()
     if(not WinCheck(positions_occupied_by_cpu , False)):
         is_player_turn = True
 
@@ -171,10 +184,12 @@ while True:
             moves_Available += 1
 
     if moves_Available == 0 :
+        print("Draw")
         break
     else:
         if is_player_turn:
             while is_player_turn:
+                print("------------------------------------")
                 DrawBoard()
                 player_move = input("Enter Your Move --> ")
 
