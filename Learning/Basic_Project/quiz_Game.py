@@ -32,7 +32,7 @@ while wannaPlay =="":
 options = [1,2,3,4]
 Ans = 0
 
-quest_not_asked = Questions
+quest_not_asked = Questions.cpoy()
 
 correct_answers = 0
 wrong_answers = 0
@@ -76,7 +76,7 @@ def AskQuestion():
        
 while True:
     if len(quest_not_asked) > 0:
-        for i in range(5):
+        for i in range(5,0,-1):
             print(i)
             time.sleep(0.5)
         AskQuestion()
