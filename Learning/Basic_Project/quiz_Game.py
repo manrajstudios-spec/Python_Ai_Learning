@@ -32,7 +32,7 @@ while wannaPlay =="":
 options = [1,2,3,4]
 Ans = 0
 
-quest_not_asked = Questions.cpoy()
+quest_not_asked = Questions.copy()
 
 correct_answers = 0
 wrong_answers = 0
