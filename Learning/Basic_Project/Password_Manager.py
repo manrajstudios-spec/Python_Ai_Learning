@@ -103,7 +103,7 @@ def AskForDataBasedOnSiteName():
         else:
             data = LoadData()
             for d in data:
-                if d["Site_Name"] == site_name:
+                if site_name.lower() in d["Site_Name"].lower():
                     print(f'Your User_Name is --> {d["User_Name"]} , Your Site_Name {d["Site_Name"]} , Your PassWord IS {Decrypt(d["Password"])} ')
                     data_found = True 
                     break     
