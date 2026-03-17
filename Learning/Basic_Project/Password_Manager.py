@@ -2,7 +2,8 @@ import json
 import time
 from Encryption_Decryption_Caesar_Ciphe import Encrypt,Decrypt
 file_name = "Learning/Basic_Project/User_Password_Data.json"
-
+master_file = "Learning/Basic_Project/Master_Password.txt"
+master_password =""
 
 def LoadData():
     data = []
@@ -26,18 +27,54 @@ def StoreData(data_to_store: dict):
 
     print("Data Stored")
 
+def AskForMasterPassword():
+    try:
+        with open(master_file,'r') as file:
+            master_password = file.read()
+    except FileNotFoundError:
+        master_password = ""
+
+    while True:
+        if master_password:
+            user_input = input("Enter Master Password To Access Old Passwords Or Store New Ones --> ")
+
+            if user_input == Decrypt(master_password):
+                return True
+            else:
+                return False
+        else:
+            print("Master Password Not Stored")
+
+            while True:
+                print("To Keep Your Passwords Safe Add A Master Password")
+                time.sleep(0.5)
+                user_i = input("Enter Master Password --> ")
+
+                if user_i:
+                    master_password = Encrypt(user_i)
+                    with open(master_file,'w')as file:
+                        file.write(master_password)
+                    
+                    break
+
 def AskToChangePassword(data:list,index:int):
     while True:
         wanna_chnage = input("Want To Change Password Or Not (y|n) --> ")
         password_stored = False
+
         if wanna_chnage.lower() == "y":
+            if not AskForMasterPassword():
+                print("Master Password Wrong :(")
+                break
 
             print(f'Your current Password is ---> {Decrypt(data[index]["Password"])}')
+
             while not password_stored:
                 time.sleep(0.3)
                 new_password = input("Enter The new Password --> or (Type n to stop) : ")
 
                 if new_password == "n":
+                    print("Quitted")
                     break
                 else:
                     while not password_stored:
@@ -46,27 +83,31 @@ def AskToChangePassword(data:list,index:int):
 
                         if new_password == re_type_new_password:
                             data[index]["Password"] = Encrypt(new_password)
-
                             WriteData(data)
-
                             print("New Password Is Stored")  
                             password_stored = True
                             break
+
                         else:
                             print("Password Did not matched Try Again")
                             time.sleep(1)
         elif wanna_chnage.lower() == "n":
             break
         else:
-            print("plz Enter Valid Option")       
-        if password_stored == True:
+            print("plz Enter Valid Option")                
+        if password_stored:
             break
 
 def AskForDataToStore():
-    while True:
+    while True:       
+        if not AskForMasterPassword():
+                time.sleep(1)
+                print ("Password Was Wrong You cannot Store Password To Store Type in correct password")
+                break          
+        time.sleep(0.5)
         User_Name = input("Enter User Name For Site --> ")
 
-        if User_Name != "":
+        if User_Name:
             time.sleep(0.3)
             Site_Name = input("Enter Name For Site --> ")
 
@@ -85,7 +126,7 @@ def AskForDataToStore():
                     break
             if Site_Name != "":
                 time.sleep(0.3)
-                password = input("Enter password For Site --> ")
+                password = input("Enter Password For Site --> ")
 
                 if password != "":
                     StoreData({"User_Name": User_Name , "Site_Name":Site_Name,"Password":Encrypt(password)})
@@ -101,6 +142,9 @@ def AskForDataBasedOnSiteName():
         if site_name == "n":
             break
         else:
+            if not AskForMasterPassword():
+                print("Master Password Worng:(")
+                break
             data = LoadData()
             for d in data:
                 if site_name.lower() in d["Site_Name"].lower():
@@ -113,6 +157,7 @@ def AskForDataBasedOnSiteName():
             break
         else:
             break
+
 
 while True:
     wanna_store_new_password = input("Want To Store Data (y/n): ")
