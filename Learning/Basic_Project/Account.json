@@ -1,0 +1,29 @@
+[
+    {
+        "User_Name": "Manraj",
+        "Password": "Rfs&7553",
+        "Balance": 250000,
+        "ID": 0,
+        "LoanTaken": true,
+        "TotalLoan": 200000,
+        "Repayment": 201000,
+        "Timeline": 10,
+        "LastPayment": [
+            2026,
+            3,
+            18,
+            0
+        ],
+        "DateTaken": [
+            2026,
+            3,
+            18
+        ]
+    },
+    {
+        "User_Name": "Jay",
+        "Password": "Ofd&7553",
+        "Balance": 500000,
+        "ID": 1
+    }
+]
