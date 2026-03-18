@@ -1,6 +1,7 @@
 import json
 from datetime import datetime,date
 import time
+import calendar
 
 task_file = "Learning/Basic_Project/Tasks.json"
 
@@ -47,8 +48,8 @@ def AddNewTask():
 
                         if  task_month.isdigit() and int(task_month) >0 and int(task_month) <= 12:
                             task_date = input("Enter Date of Deadline Of Task --> ")
-
-                            if task_date.isdigit() and int(task_date) > 0 and int(task_date) <= 31:
+                            days_in_task_month = calendar.monthrange(date.today().year , task_month)(1)
+                            if task_date.isdigit() and int(task_date) > 0 and int(task_date) <= days_in_task_month:
                                 task_time = input("Enter Time in 24hrs format only hour (integer) --> ")
                                 if task_time.isdigit():
                                     days_left = (date(date.today().year, int(task_month),int(task_date)) - date.today()).days
