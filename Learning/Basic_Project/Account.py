@@ -4,10 +4,10 @@ class account:
     
     users_data_file = "Learning/Basic_Project/Account.json"
     _pass = ""
-    def __init__(self , user_name , password,balance:int):
+    def __init__(self , user_name , password):
         self.user_name = user_name
         self.password = password
-        self.balance = balance
+        self.balance = 0
         self.i_d = 0
         self.is_loan_taken = False
         self.total_loan = 0 
@@ -26,8 +26,8 @@ class account:
         if self.balance - amount_to_withdraw >= 0:
             self.balance -= amount_to_withdraw
             print(f"{amount_to_withdraw} Withdrew")
-
             self.UpdateInfo()
+            return True
         else:
             print(f"Not Enough Money {self.balance}")
             return False
@@ -65,10 +65,10 @@ class account:
                     d["Balance"] = self.balance
                     d["LoanTaken"] = self.is_loan_taken
                     d["TotalLoan"] = self.total_loan
-                    d["Repayment"] = self.repayment_left
+                    d["DateTaken"] = self.date_for_loan
                     d["Timeline"] = self.months_for_which_loan_taken
-                    d["LastPayment"] = [date.today().year , date.today().month , date.today().day,0]
-                    d["DateTaken"] = [date.today().year , date.today().month , date.today().day]
+                    d["Repayment"] = self.repayment_left
+                    d["LastPayment"] = self.last_payment_
                     break
             
             with open(self.users_data_file,'w') as file:
@@ -80,7 +80,7 @@ class account:
         self.repayment_left = 0
         self.date_for_loan = []
         self.months_for_which_loan_taken = 0
-        self.last_payment_ = 0
+        self.last_payment_ = []
         self.UpdateLoanInfo()
 
 
@@ -101,15 +101,17 @@ class account:
         self.UpdateLoanInfo()
     
     def PayLoan(self,amount):
-        if not self.WithdrawMoney(amount):
-            print("You dont Have money")
-            return
-        
-        self.repayment_left -= amount
-        if self.repayment_left <= 0:
-            self.ClearLoan()
-
-        self.UpdateLoanInfo()
+        b = False
+        if self.repayment_left - amount <= 0:
+            b = self.WithdrawMoney(self.repayment_left)
+        else:
+            b = self.WithdrawMoney(amount)
+        if b:
+            self.repayment_left -= amount
+            if self.repayment_left <= 0:
+                self.ClearLoan()
+            print(f"Repayment Left {self.repayment_left}")
+            self.UpdateLoanInfo()
 
     def AddInterset(self):
         if self.is_loan_taken:
@@ -127,7 +129,7 @@ class account:
         self.total_loan = amount_of_loan
         self.repayment_left = amount_of_loan + 1000
         self.months_for_which_loan_taken = months_for_loan_taken
-        self.last_payment_ = [date.today().year , date.today().month , date.today().day,0]
+        self.last_payment_ = [date.today().year , date.today().month , date.today().day]
         self.UpdateLoanInfo()
 
     def SaveAccountInfo(self):
@@ -136,7 +138,13 @@ class account:
         user_data = {"User_Name":self.user_name,
                      "Password":self.password,
                      "Balance":self.balance,
-                     "ID":len(data)
+                     "ID":len(data),
+                     "LoanTaken":False,
+                     "TotalLoan":0,
+                     "DateTaken":[],
+                     "Timeline":0,
+                     "Repayment":0,
+                     "LastPayment":[]
                     }
         self._pass = self.password
         self.i_d = len(data)

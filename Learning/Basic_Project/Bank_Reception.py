@@ -27,7 +27,8 @@ def MakeNewAccount():
                 time.sleep(0.5)
                 if user_input_amount and user_input_amount.isdigit():
                     amount = int(user_input_amount)
-                    new_account = account(user_input_name , password,amount)
+                    new_account = account(user_input_name , password)
+                    new_account.AddMoney(amount_to_add=amount)
                     new_account.SaveAccountInfo()
                     i_d = new_account.i_d
                     time.sleep(1)
@@ -78,11 +79,15 @@ def Options(a:account):
                 case 4: TakeLoan(a) 
                 case 5:
                     while True:
-                        print(f'Repayment left is {a.repayment_left}')
-                        u_I = input("Enter Amount To Pay --> ")
+                        if a.is_loan_taken :
+                            print(f'Repayment left is {a.repayment_left}')
+                            u_I = input("Enter Amount To Pay --> ")
 
-                        if u_I and u_I.isdigit():
-                            a.PayLoan(int(u_I))
+                            if u_I and u_I.isdigit():
+                                a.PayLoan(int(u_I))
+                                break
+                        else:
+                            print("No Loan Taken")
                             break
                 case _:
                     print("Invalid")
@@ -94,6 +99,7 @@ def AccessAccount():
     while True:
         user_input = input("Enter Your User ID provided when creating account: ")
 
+        if user_input == "n":break
         if user_input  and user_input.isdigit():
             data = LoadData()
             if data:
@@ -104,8 +110,15 @@ def AccessAccount():
                             _pass = Encrypt(user_pass)
                             if user_pass and _pass == d["Password"]:
                                 print(f'Account Holder Name is {d["User_Name"]} \nBank Balance is --> {d["Balance"]}')
-                                _a = account(d["User_Name"] , d["Password"] ,d["Balance"])
+                                _a = account(d["User_Name"] , d["Password"])
                                 _a.i_d = d["ID"]
+                                _a.balance = d["Balance"]
+                                _a.is_loan_taken = d["LoanTaken"]
+                                _a.total_loan = d["TotalLoan"]
+                                _a.date_for_loan = d["DateTaken"]
+                                _a.months_for_which_loan_taken = d["Timeline"]
+                                _a.repayment_left = d["Repayment"]
+                                _a.last_payment_ = d["LastPayment"]
                                 _a.AddInterset()
                                 Options(_a)
                                 break
