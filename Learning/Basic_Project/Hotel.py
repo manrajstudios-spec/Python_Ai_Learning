@@ -1,9 +1,10 @@
 from Encryption_Decryption_Caesar_Ciphe import Encrypt ,Decrypt
 from json import dump,load
-from Hotel_Clases import RoomType,Simple,Plus,Luxury
+from Hotel_Clases import RoomType,Simple,Plus,Luxury,Customer
 from time import sleep
 
 password_file = "Learning\Basic_Project\Password_Hotle.txt"
+customer_file = "Learning/Basic_Project/Customer_Hotel.json"
 rooms_file = "Learning/Basic_Project/Rooms.json"
 
 prices = {"Luxury":10000,
@@ -19,7 +20,7 @@ def LoadJson(file_name):
         with open(file_name,'r')as file:
             return load(file)
     except:return[]
-    
+
 def WriteJson(file_name,to_write):
     with open(file_name,'w') as file:
         dump(to_write,file,indent=4)
@@ -38,8 +39,29 @@ def UpdatePass(_pass:str):
     with open(password_file , 'w') as file:
         file.write(_pass)
 
-def AskForCustomerID():
+
+def NewCustomer():
+    customer_name = ""
+    cusomers = LoadJson(customer_file)
+    while True:
+        customer_input = input("Please :) Enter Your Name --> ")
+
+        if customer_input:
+            customer_name = customer_input
+            break
+    
+def RegisteredCustomer():
     pass
+
+def AskForCustomerID():
+    booked = False
+
+    while True:
+        customer_input = input("Have You Already Booked A Room (Y/N) --> ")
+        if customer_input:
+            if customer_input.lower() == "y":booked = True
+            elif  customer_input.lower() == "n":booked = False
+            break
 
 def ReturnRoomType(num:int):
     match num:
@@ -50,103 +72,95 @@ def ReturnRoomType(num:int):
         case 3:
             return RoomType.Group
         
-def RoomPrice(room_type:RoomType , num:int):
-    if num > 3 : return
-    match num:
-        case 1 :
-            if room_type == RoomType.Single: return prices["Luxury"]
-            elif room_type == RoomType.Double:return prices["Luxury"] + extra_for_size["Double"]
-            else : return prices["Luxury"] + extra_for_size["Group"]
-        case 2:
-            if room_type == RoomType.Single: return prices["Plus"]
-            elif room_type == RoomType.Double:return prices["Plus"] + extra_for_size["Double"]
-            else : return prices["Plus"] + extra_for_size["Group"]
-        case 3:
-            if room_type == RoomType.Single: return prices["Simple"]
-            elif room_type == RoomType.Double:return prices["Simple"] + extra_for_size["Double"]
-            else : return prices["Simple"] + extra_for_size["Group"]
-
-
-def ListRooms(room_type:RoomType,num:int):
+def ListRooms(num:int):
     rooms = LoadJson(rooms_file)
+    luxury_rooms = []
+    plus_rooms = []
+    simple_rooms = []
+    booked_rooms = []
+    unbooked_rooms = []
+    for r in rooms:
+        if r["Booked"]:
+            booked_rooms.append(r)
+        else:
+            unbooked_rooms.append(r)
+
+        if r["Facility"] == "Luxury": luxury_rooms.append(r)
+        elif r["Facility"] == "Plus": plus_rooms.append(r)
+        elif r["Facility"] == "Simple":simple_rooms.append(r)
+
     match num:
-        case 1:
-            for r in rooms:
-                pass
         case 2:
-            pass
+            print(f"Number Of Booked Rooms {len(booked_rooms)}")
+            return booked_rooms
         case 3:
-            pass
-
-def AddNewRooms():
-    added = False
-
-    while not added:
-        user_input = input("Enter Number Of Rooms To Add --> ")
-        rooms:list = LoadJson(rooms_file)
-
-        if user_input:
-            if user_input.isdigit():
-                while not added:
-                    sleep(0.5)
-                    user_input_type = input("Press 1 --> Single Room \nPress 2 --> Double Room \nPress 3 --> For Group \n")
-
-                    if user_input_type:
-                        if user_input_type.isdigit():
-                            while not added:
-                                sleep(0.5)
-                                user_input_facility = input("Press 1 --> Add Luxury Room \nPress 2 --> Add Plus Room \nPress 3 --> Add Simple Room \n")
-
-                                if user_input_facility:
-                                    if user_input_facility.isdigit():
-                                        room_type = ReturnRoomType(int(user_input_type))
-                                        for i in range(0,int(user_input)):
-                                            room = None
-                                            room_dict = {}
-                                            faclity = ""
-                                            match int(user_input_facility):
-                                                case 1:
-                                                    price = RoomPrice(room_type=room_type ,num = 1)
-                                                    room = Luxury(room_number=len(rooms) , room_type=room_type,price=price)
-                                                    faclity = "Luxury"
-                                                case 2:
-                                                    price = RoomPrice(room_type=room_type ,num = 2)
-                                                    room = Plus(room_number=len(rooms) , room_type=room_type,price=price)
-                                                    faclity = "Plus"
-                                                case 3:
-                                                    price = RoomPrice(room_type=room_type ,num = 3)
-                                                    room = Simple(room_number=len(rooms) , room_type=room_type,price=price)
-                                                    faclity = "Simple"
-                                                case _: 
-                                                    print("Invalid") 
-                                                    break
-                                            r_type = str(room_type)[9:]
-                                            room_dict = {"Room_ID":room.room_number,
-                                                        "Room_Type":(r_type),
-                                                        "Room_Facility":faclity,
-                                                        "Room_Price":int(price),
-                                                        "Room_Assigned":False,
-                                                        "Assigned_To":0}
-                                            
-                                            rooms.append(room_dict)
-                                        WriteJson(rooms_file,rooms)
-                                        print("Rooms Added")
-                                        added = True
+            print(f"Number Of Un Booked Rooms {len(booked_rooms)}")
+            return unbooked_rooms
+        case 4:
+            print(f"Number Of Lunxury Rooms {len(booked_rooms)}")
+            return luxury_rooms
+        case 5:
+            print(f"Number Of Plus Rooms {len(booked_rooms)}")
+            return plus_rooms
+        case 6:
+            print(f"Number Of Simple Rooms {len(booked_rooms)}")
+            return simple_rooms
     
+def AddNewRooms():
+    number_of_Rooms = 0
+    room_type = None
+    while True:
+        user_input = input("Enter Number Of Rooms To Add --> ")
+        if user_input and user_input.isdigit():
+            number_of_Rooms = int(user_input)
+            break
+    
+    while True:
+        sleep(0.5)
+        user_input_type = input("Press 1 --> Single Room \nPress 2 --> Double Room \nPress 3 --> For Group \n")
+        if user_input_type and user_input_type.isdigit():
+            room_type = ReturnRoomType(int(user_input_type))
+            break
+    
+    while True:
+        user_input_facility = input("Press 1 --> Add Luxury Room \nPress 2 --> Add Plus Room \nPress 3 --> Add Simple Room \n")
+        if user_input_facility and user_input_facility.isdigit() and int(user_input_facility) > 0 and int(user_input_facility) < 4:
+            rooms = LoadJson(rooms_file)
+            for i in range(0,number_of_Rooms):
+                r = None
+                match int(user_input_facility):
+                    case 1:
+                        r = Luxury(len(rooms) +i,room_type)
+                    case 2:
+                        r = Plus(len(rooms) + i,room_type)
+                    case 3:
+                        r = Simple(len(rooms) + i,room_type)
+                rooms.append(r.ReturnInfo())
+            WriteJson(rooms_file,rooms)
+            print("Rooms Added :)")
+            break
+                                 
 def OwnerMenu():
     sleep(1)
     while True:
         user_input = input("\nPress 1 -> Add New Rooms \nPress 2 --> See Booked Rooms \nPress 3 --> To See Unbooked Rooms \nPress 4 --> Change Prices Of Rooms \n")
 
-        if user_input :
+        if user_input:
             if user_input == "1":
                 AddNewRooms()
                 sleep(1)
                 break
             elif user_input in ["2","3"]:
-                pass
+                rooms = ListRooms(int(user_input))
+
+                for r in rooms:
+                    print(f"Room Number => {r["RoomNumber"]} \nRoom Type --> {r["RoomType"]}\nRoom Price --> {r["Price"]}\nFacility --> {r["Facility"]}\n")
+                    if r["Booked"]:
+                         print(f"Booker ID --> {r["Booker_ID"]}")
+                break
             elif user_input == "4":
                 pass
+
 def AskForPassword():
     password = LoadPassword()
     
@@ -179,4 +193,4 @@ while True:
             AskForPassword()
         elif user_input == "2":
             AskForCustomerID()
-        break
+        elif user_input == "n":break

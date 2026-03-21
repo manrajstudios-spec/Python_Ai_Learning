@@ -1,33 +1,61 @@
 from enum import Enum
+import json
 
 class RoomType(Enum):
-    Single = 1
-    Double = 2
-    Group = 3
+    Single = 0
+    Double = 5000
+    Group = 7000
 
 class Room:
-    def __init__(self,room_number,room_type:RoomType,price:int):
+    def __init__(self,room_number,room_type:RoomType):
         self.room_number = room_number
         self.renter = None
         self.room_type = room_type
-        self.price = price
+        self.base_price = 0
+        self.name = ""
+        self.is_booked = False
 
+    def ReturnPrice(self):
+        self.price = self.base_price + self.room_type.value
+        return self.price
+    
+    def ReturnInfo(self):
+        return {"RoomNumber":self.room_number,
+                "RoomType":str(self.room_type.name),
+                "Facility":self.name,
+                "Booked":self.is_booked,
+                "Booker_ID":0,
+                "Price":self.ReturnPrice()
+                }
+    
 class Simple(Room):
-    def __init__(self, room_number, room_type,price):
-        super().__init__(room_number, room_type,price)
+    def __init__(self, room_number, room_type):
+        super().__init__(room_number, room_type)
         self.features = ["Bed","WiFi"]
+        self.base_price = 5000
+        self.name = "Simple"
 
 class Plus(Room):
-    def __init__(self, room_number, room_type,price):
-        super().__init__(room_number, room_type,price)
+    def __init__(self, room_number, room_type):
+        super().__init__(room_number, room_type)
         self.features = ["Bed","WiFi","Meals","Air conditioning","Heat"]
+        self.base_price = 7000
+        self.name = "Plus"
 
 class Luxury(Room):
-    def __init__(self, room_number, room_type,price):
-        super().__init__(room_number, room_type,price)
+    def __init__(self, room_number, room_type):
+        super().__init__(room_number, room_type)
         self.features = ["Bed","WiFi","Meals","Air Conditioning","Heat","Separate Living Room And Bed Room","Private Swimming Pool"]
+        self.base_price = 10000
+        self.name = "Luxury"
 
 class Customer:
-    def __init__(self,i_d):
+    def __init__(self,i_d,name):
         self.i_d = i_d
-        self.room_rented:Room = None
+        self.booked_room_number = 0
+        self.name= name
+
+    def ReturnInfo(self):
+        return {"Customer_ID": self.i_d,
+                "RoomNumber":self.booked_room_number}
+
