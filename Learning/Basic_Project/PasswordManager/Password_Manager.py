@@ -1,8 +1,8 @@
 import json
 import time
-from Encryption_Decryption_Caesar_Ciphe import Encrypt,Decrypt
-file_name = "Learning/Basic_Project/User_Password_Data.json"
-master_file = "Learning/Basic_Project/Master_Password.txt"
+from Learning.Basic_Project.PasswordManager.Encryption_Decryption_Caesar_Ciphe import Encrypt,Decrypt
+file_name = "Learning/Basic_Project/PasswordManager/User_Password_Data.json"
+master_file = "Learning/Basic_Project/PasswordManager/Master_Password/txt"
 master_password =""
 
 def LoadData():

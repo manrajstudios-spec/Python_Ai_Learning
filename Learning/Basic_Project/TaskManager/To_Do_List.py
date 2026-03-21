@@ -3,7 +3,7 @@ from datetime import datetime,date
 import time
 import calendar
 
-task_file = "Learning/Basic_Project/Tasks.json"
+task_file = "Learning/Basic_Project/TaskManager/Tasks.json"
 
 def LoadTask():
     data = []

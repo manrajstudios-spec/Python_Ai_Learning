@@ -1,9 +1,9 @@
-from Encryption_Decryption_Caesar_Ciphe import Encrypt
-from Account import account
+from Learning.Basic_Project.PasswordManager.Encryption_Decryption_Caesar_Ciphe import Encrypt
+from Learning.Basic_Project.BankManager.Account import account
 import time
 import json
 
-users_data_file = "Learning/Basic_Project/Account.json"
+users_data_file = "Learning/Basic_Project/BankManager/Account.json"
 
 def MakeNewAccount():
     while True:

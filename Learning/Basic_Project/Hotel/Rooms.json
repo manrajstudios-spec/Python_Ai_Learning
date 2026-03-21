@@ -1,0 +1,98 @@
+[
+    {
+        "RoomNumber": 0,
+        "RoomType": "Single",
+        "Facility": "Luxury",
+        "Booked": false,
+        "Booker_ID": 0,
+        "Price": 10000
+    },
+    {
+        "RoomNumber": 2,
+        "RoomType": "Single",
+        "Facility": "Luxury",
+        "Booked": false,
+        "Booker_ID": 0,
+        "Price": 10000
+    },
+    {
+        "RoomNumber": 4,
+        "RoomType": "Single",
+        "Facility": "Luxury",
+        "Booked": false,
+        "Booker_ID": 0,
+        "Price": 10000
+    },
+    {
+        "RoomNumber": 6,
+        "RoomType": "Single",
+        "Facility": "Luxury",
+        "Booked": false,
+        "Booker_ID": 0,
+        "Price": 10000
+    },
+    {
+        "RoomNumber": 4,
+        "RoomType": "Double",
+        "Facility": "Plus",
+        "Booked": false,
+        "Booker_ID": 0,
+        "Price": 12000
+    },
+    {
+        "RoomNumber": 6,
+        "RoomType": "Double",
+        "Facility": "Plus",
+        "Booked": false,
+        "Booker_ID": 0,
+        "Price": 12000
+    },
+    {
+        "RoomNumber": 8,
+        "RoomType": "Group",
+        "Facility": "Plus",
+        "Booked": true,
+        "Booker_ID": 0,
+        "Price": 14000
+    },
+    {
+        "RoomNumber": 10,
+        "RoomType": "Double",
+        "Facility": "Plus",
+        "Booked": false,
+        "Booker_ID": 0,
+        "Price": 12000
+    },
+    {
+        "RoomNumber": 8,
+        "RoomType": "Group",
+        "Facility": "Plus",
+        "Booked": true,
+        "Booker_ID": 0,
+        "Price": 14000
+    },
+    {
+        "RoomNumber": 10,
+        "RoomType": "Group",
+        "Facility": "Plus",
+        "Booked": false,
+        "Booker_ID": 0,
+        "Price": 14000
+    },
+    {
+        "RoomNumber": 12,
+        "RoomType": "Group",
+        "Facility": "Plus",
+        "Booked": false,
+        "Booker_ID": 0,
+        "Price": 14000
+    },
+    {
+        "RoomNumber": 14,
+        "RoomType": "Group",
+        "Facility": "Plus",
+        "Booked": false,
+        "Booker_ID": 0,
+        "Price": 14000
+    }
+]

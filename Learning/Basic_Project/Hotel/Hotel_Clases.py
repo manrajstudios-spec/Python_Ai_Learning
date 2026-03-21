@@ -14,6 +14,7 @@ class Room:
         self.base_price = 0
         self.name = ""
         self.is_booked = False
+        self.price = self.ReturnPrice()
 
     def ReturnPrice(self):
         self.price = self.base_price + self.room_type.value
@@ -25,7 +26,7 @@ class Room:
                 "Facility":self.name,
                 "Booked":self.is_booked,
                 "Booker_ID":0,
-                "Price":self.ReturnPrice()
+                "Price":self.price
                 }
     
 class Simple(Room):
@@ -50,12 +51,12 @@ class Luxury(Room):
         self.name = "Luxury"
 
 class Customer:
-    def __init__(self,i_d,name):
+    def __init__(self,i_d,name,room_number):
         self.i_d = i_d
-        self.booked_room_number = 0
-        self.name= name
+        self.booked_room_number = room_number
+        self.name = name
 
     def ReturnInfo(self):
-        return {"Customer_ID": self.i_d,
+        return {"ID": self.i_d,
                 "RoomNumber":self.booked_room_number}
 
