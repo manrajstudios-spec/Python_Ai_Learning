@@ -135,6 +135,15 @@ rng = np.random.default_rng() # we can also seed be putting seed = any number in
 
 print(rng.integers(1,100,(3,2))) # 1 low , 2 high , 3 number of vals needed  for 3 we can also put in a tuple to get 2d 3d or nd array
 
+# matrix multiplication 
+# matrix 1 @ matrix b
+
+matrix_array_1 = np.array([[1,2],
+                         [3,4]])
+matrix_array_2 = np.array([[5,6],
+                           [7,8]])
+
+print(matrix_array_1 @ matrix_array_2)
 
 
 
