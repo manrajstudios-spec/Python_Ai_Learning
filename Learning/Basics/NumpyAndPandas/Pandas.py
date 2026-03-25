@@ -64,8 +64,6 @@ print(series_d.loc["Physics"])
 failed = series_d[series_d < 70]
 print(failed)
 
-"""
-
 #---------------------------DATA FRAME-------------------------------
 
 #tabular data strucutre rows and coloumn like spreadhseet 2D series
@@ -79,7 +77,7 @@ print(df)
 
 #we can have labels too
 df_2 = pd.DataFrame(students,index=["Studnet - 1","Student - 2","Student - 3"])
-"""
+
 print(df_2)
 
 print(df_2.loc["Student - 3"])
@@ -96,7 +94,7 @@ print(df_2.iloc[2])
 
 print(df_2.loc["Student - 2"])
 print(df_2.iloc[1])
-"""
+
 #Add New Coloumn 
 
 df_2["Class"] = ["Class 9" , "Class 10" , "Class 11"]
@@ -119,4 +117,9 @@ new_rows_df = pd.DataFrame(new_rows,index = ["Student - 5","Student - 6"])
 new_df = pd.concat([df_2,new_rows_df]) # We Could Have Used Older Data Frame Too
 print(new_df)
 
+"""
 
+# importing data
+
+r_df = pd.read_csv("Learning/Basics/NumpyAndPandas/pokemons.csv")
+print(r_df)
