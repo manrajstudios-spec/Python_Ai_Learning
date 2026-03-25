@@ -4,7 +4,7 @@ import json
 # just with open("FileName" , "Mode") as file
 
 
-file_name = "Learning/Basics/TestFile.txt"
+file_name = "Learning\Basics\Python_Base\TestFile.txt"
 #overrite removes existing
 with open(file_name,'w') as file: #forward slahes 
     file.write("Manraj Singh")
@@ -24,7 +24,7 @@ with open(file_name,'r') as file:
 
 # jason file
 
-file_Name_Json = "Learning/Basics/Test_Data.json"
+file_Name_Json = "Learning\Basics\Python_Base\Test_Data.json"
 
 
 data1 = {"User_Name":"Manraj",

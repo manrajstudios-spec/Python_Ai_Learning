@@ -1,4 +1,5 @@
 import pandas as pd
+
 """
 
 #-------------SERIES-----------------------------
@@ -120,6 +121,17 @@ print(new_df)
 """
 
 # importing data
-
 r_df = pd.read_csv("Learning/Basics/NumpyAndPandas/pokemons.csv")
 print(r_df)
+
+#----> To Read A Json File do (DataFrame = pd.read_json("File Location"))
+r_df.to_json("Learning/Basics/NumpyAndPandas/Pokemons_J.json" ,orient="records" , indent=6)
+#for all data 
+#DataFrame.to_string()
+print(r_df.to_string())
+
+# DataFrame.head(n) --> gives the data from start and n is number of rows we want 
+print(r_df.head(10))
+
+# DataFrame.tail(n) --> Shows Data From Last and n is number of rows we want
+print(r_df.tail(10))
