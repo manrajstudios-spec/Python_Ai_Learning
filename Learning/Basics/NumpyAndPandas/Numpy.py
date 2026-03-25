@@ -11,7 +11,7 @@ np_array = np.array([[[1,2,3],[4,5,6],[7,8,9]],
                      [[10,11,12],[14,15,16],[17,18,19]],
                      [[20,21,23],[24,25,26],[27,28,29]]])
 
-# dimensions 
+# dimensions and shape
 print(np_array.ndim,np_array.shape)
 
 #accessing element
@@ -143,7 +143,8 @@ matrix_array_1 = np.array([[1,2],
 matrix_array_2 = np.array([[5,6],
                            [7,8]])
 
-print(matrix_array_1 @ matrix_array_2)
+print(matrix_array_1 @ matrix_array_2) # must follow mtrix product rule that is coloumn of first == row of second
+
 
 
 
