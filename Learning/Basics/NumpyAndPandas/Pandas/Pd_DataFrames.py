@@ -12,7 +12,7 @@ df = pd.DataFrame(students)
 print(df)
 
 #we can have labels too
-df_2 = pd.DataFrame(students,index=["Studnet - 1","Student - 2","Student - 3"])
+df_2 = pd.DataFrame(students,index=["Student - 1","Student - 2","Student - 3"])
 
 print(df_2)
 
@@ -23,10 +23,15 @@ df_2.iloc[2] = {"Name":"Johan",
            "Age":17}
 df_2.loc["Student - 2"] = {"Name":"Daniel",
                            "Age":16}
-print(df_2)
 
-print(df_2.loc["Student - 3"])
-print(df_2.iloc[2])
+#<----------------- Access Elements------------->
+
+# iloc and loc 
+#.iloc or .loc[row ,coloumn] when have multiple coloumn Data Frame
+
+#lets print Student - 3's Name And Age 
+
+print(df_2.loc[["Student - 3"] , ["Name","Age"]])
 
 print(df_2.loc["Student - 2"])
 print(df_2.iloc[1])

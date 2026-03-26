@@ -17,6 +17,12 @@ print(r_df.head(10))
 # DataFrame.tail(n) --> Shows Data From Last and n is number of rows we want
 print(r_df.tail(10))
 
+#<------------To Access Elements--------------->
+#iloc[row , coloumn] smae for loc but with loc
+#NOTE iloc cannot recieve string input even for coloumns
+
+print(r_df.loc[:,["Name","Type1"]])
+
 #return info of specific colomns
 
 print(r_df["No"].to_string())

@@ -54,9 +54,9 @@ print(series_d)
 #changing values
 series_d["Maths"] -= 10
 
-print(series_d.loc["Maths"])
-print(series_d.loc["Chemistry"])
-print(series_d.loc["Physics"])
+print(series_d["Maths"])
+print(series_d["Chemistry"])
+print(series_d["Physics"])
 
 #filtering
 

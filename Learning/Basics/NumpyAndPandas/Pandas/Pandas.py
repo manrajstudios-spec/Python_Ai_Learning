@@ -1,7 +1,5 @@
 import pandas as pd
-
 """
-
 #-------------SERIES-----------------------------
 
 #series is just a single column like data in single colomn of spreadsheet (1D)
@@ -26,13 +24,13 @@ n_nums = [60,70,50,20,100]
 
 n_series = pd.Series(n_nums , index = ["a","b","c","d","e"])
 
-# print(n_series.loc["a"]) #series.loc[label] for accessing using label
-# print(n_series.iloc[0])#series.iloc[index] for accessing using index
+print(n_series.loc["a"]) #series.loc[label] for accessing using label
+print(n_series.iloc[0])#series.iloc[index] for accessing using index
 
-# #to change Value at a index 
-# n_series.loc[1] = 1000#using label
-# n_series.iloc[2] = 2000#using index
-# print(n_series)
+#to change Value at a index 
+n_series.loc[1] = 1000#using label
+n_series.iloc[2] = 2000#using index
+print(n_series)
 
 #filtering
 series_filetered = n_series[n_series > 50]
@@ -117,15 +115,14 @@ new_rows_df = pd.DataFrame(new_rows,index = ["Student - 5","Student - 6"])
 
 new_df = pd.concat([df_2,new_rows_df]) # We Could Have Used Older Data Frame Too
 print(new_df)
-"""
-# importing data
-r_df = pd.read_csv("Learning/Basics/NumpyAndPandas/pokemons.csv")
-"""print(r_df)"""
 
-#----> To Read A Json File do (DataFrame = pd.read_json("File Location"))
+#------------------------------- IMPORTING DATA-----------------------------------
+r_df = pd.read_csv("Learning/Basics/NumpyAndPandas/pokemons.csv")
+print(r_df)
+
+#---> To Read A Json File do (DataFrame = pd.read_json("File Location"))
 r_df.to_json("Learning/Basics/NumpyAndPandas/Pokemons_J.json" ,orient="records" , indent=6)
 
-"""
 #for all data 
 #DataFrame.to_string()
 print(r_df.to_string())
@@ -147,7 +144,6 @@ print(r_df["Legendary"].to_string())
 #print multiple colmns
 print(r_df[["Name","Height","Weight"]].to_string())
 
-"""
 #get rows
 #with index (iloc for index)
 print(r_df.loc[2]) # if there are labels then , to access with labels use loc if no labels then loc will give results based on indexes
@@ -166,7 +162,7 @@ print(r_df.iloc[:11,:3])
 
 #-------------------To Add Labels------------------- 
 # We Can Set Any Coloumn As Label So Adding Lables can be easy and we can accesss any row based on name
-"""
+
 df_specific = pd.read_csv("Learning/Basics/NumpyAndPandas/pokemons.csv" , index_col=["Name"])# pd.read_csv("file",index-col = [coloumn we want as label])
 
 print(df_specific)
@@ -179,5 +175,43 @@ print(df_specific.loc["Charmander", ["Height","Weight"]])
 print(df_specific.loc["Charmander":"Pikachu",["Type1","Type2"]])
 
 
+
+#---------------------------FILTERING-----------------------------------
+
+poke_df = pd.read_csv("Learning/Basics/NumpyAndPandas/pokemons.csv",index_col= ["Name"])
+
+#Example we want separate Pokemons Based on Their Type
+#Lets Take All Pokemons With Type1 == "Water" | Type2 == "Water"
+
+fire_df = poke_df[(poke_df["Type1"] == "Water") | (poke_df["Type2"] == "Water")]
+print(fire_df)
+
 """
 
+#<-----------------AGGREGATIONS----------------------->
+
+# --> Used to reduce set of values into a single summerized value
+# --> used to analyze Data
+# --> groupby() func 
+
+poke_df = pd.read_csv("Learning/Basics/NumpyAndPandas/pokemons.csv",index_col= ["Name"])
+
+"""
+print(poke_df.mean(numeric_only=True)) # numeric_only=True means only those coloumns will aloowed who have numeric val
+print(poke_df.sum(numeric_only=True))
+print(poke_df.max(numeric_only=True))
+print(poke_df.min(numeric_only=True)) 
+print(poke_df.count()) # it counts number of we can say elements but dont count null vals like Type 2 result is 67
+
+# We can also do this for different coulmns
+# Example lets get mean height 
+
+print(poke_df["Height"].mean())
+
+"""
+
+#------------USING GROUP BY--------------
+
+group = poke_df.groupby("Type1")
+
+print(group["Height"].mean()) # We Get AVG Height Of Each Group Based n Type 1# all Other operations work too
