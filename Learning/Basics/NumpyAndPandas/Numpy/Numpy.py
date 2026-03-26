@@ -15,12 +15,10 @@ np_array = np.array([[[1,2,3],[4,5,6],[7,8,9]],
 print(np_array.ndim,np_array.shape)
 
 #accessing element
-
-print(np_array[0,0,1]) # 2 # we can use chain indexing too but its too slow using numpy is faster
+print(np_array[0,0,1]) # 2 # we can use chain indexing too but its too slow using, numpy is faster
 
 
 # slicing can be done too
-
 print(np_array[::-1]) # reversed
 
 print(np_array[0::2])
@@ -35,11 +33,9 @@ print(np_array[2,:,::3])
 print(np_array[:2,::3])
 
 # arithmatic
-
 a_array = np.array([1,2,4])
 
 # doing any operation on numpy array like addition or subract or anything else does that to every other element like add 2 to every element
-
 print(a_array + 2)
 print(a_array - 2)
 print(a_array / 2)
@@ -49,11 +45,9 @@ print(a_array * 2)
 
 
 #other operations
-
-print(np.round(np.sqrt(a_array)))
+print(np.round(np.sqrt(a_array))) 
 
 # Two or more arrays
-
 array1 = np.array([1,2,3])
 array2 = np.array([4,5,6])
 
@@ -72,7 +66,7 @@ print(array_scores < 40)
 # assinging with conditions
 
 scores = np.array([30,50,60,70,100])
-scores[scores < 30]
+scores = scores[scores < 30]
 print(scores)
 
 # Broadcasting
@@ -144,7 +138,3 @@ matrix_array_2 = np.array([[5,6],
                            [7,8]])
 
 print(matrix_array_1 @ matrix_array_2) # must follow mtrix product rule that is coloumn of first == row of second
-
-
-
-
