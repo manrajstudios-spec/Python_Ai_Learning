@@ -17,8 +17,6 @@ nums = [1,2,3,4]
 series_n = pd.Series(nums , index=['a','b','c','d']) 
 print(series_n)
 
-
-
 #accesing values using labels
 n_nums = [60,70,50,20,100]
 
@@ -28,8 +26,8 @@ print(n_series.loc["a"]) #series.loc[label] for accessing using label
 print(n_series.iloc[0])#series.iloc[index] for accessing using index
 
 # #to change Value at a index 
-n_series.loc[1] = 1000#using label
-n_series.iloc[2] = 2000#using index
+n_series.loc[1] = 1000 #using label
+n_series.iloc[2] = 2000 #using index
 print(n_series)
 
 #filtering
@@ -62,3 +60,5 @@ print(series_d["Physics"])
 
 failed = series_d[series_d < 70]
 print(failed)
+
+
