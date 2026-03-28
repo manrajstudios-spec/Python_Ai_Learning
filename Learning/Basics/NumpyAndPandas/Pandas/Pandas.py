@@ -259,4 +259,4 @@ poke_dex["Legendary"] = poke_dex["Legendary"].astype(bool) # --> chnages 0 = Fal
 
 poke_dex = poke_dex.drop_duplicates()
 
-print(poke_dex.to_string())
+print(poke_dex.to_string()) 
