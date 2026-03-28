@@ -7,7 +7,7 @@ poke_df = pd.read_csv("Learning/Basics/NumpyAndPandas/pokemons.csv")
 
 # --> Using df.drop(colomn)
 
-poke_df = poke_df.drop(columns=["Legendary","No"])
+poke_df = poke_df.drop(columns=["No"])
 
 print(poke_df)
 
@@ -37,8 +37,8 @@ print(poke_df["Type1"]) # We Have GRASS instead of grass AND FIRE Instead of Fir
 poke_df["Name"] = poke_df["Name"].str.lower() # --> Change Every Name To lower Case
 
 # Data Types
-
-poke_df["Legendary"] = poke_df["Legendary"].astype(bool) # --> chnages 0 = False , 1 = True
+poke_df = poke_df.drop_duplicates()
+poke_df["Legendary"] = poke_df["Legendary"].astype(bool) # --> changes 0 = False , 1 = True
 
 # Remove Duplicates 
 # For Example i added multiples instances of bulbasaur
@@ -48,4 +48,8 @@ poke_df = poke_df.drop_duplicates()
 
 print(poke_df.to_string())
 
+# SORTING
 
+#LETS Sort By Height
+
+print(poke_df.sort_values(by="Height",ascending=False))

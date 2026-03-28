@@ -145,20 +145,37 @@ print("------------------------------")
 print("------------------------------")
 
 print(df.notna())
+
 print("------------------------------")
-print(df.fillna({"Marks":df["Marks"].mean()}))
-print("------------------------------")
-print(df.fillna({"Age":df["Age"].median()}))
+df = df.fillna({"Marks":df["Marks"].mean()})
+df = df.fillna({"Age":df["Age"].median()})
+print(df)
 
 
 print("------------------------------")
 print("------------------------------")
 
-print(df.drop_duplicates())
-print("------------------------------")
-print(df["Name"].str.lower())
+df = df.drop_duplicates()
+df["Name"] = df["Name"].str.lower()
+print(df)
 
 print("------------------------------")
 print("------------------------------")
 
-df["Coloumn"] = df[df["Marks"] > 80]
+lst = []
+
+for m in df["Marks"]:
+    if m > 80:
+        lst.append(True)
+    else:
+        lst.append(False)
+
+df["Coloumn"] = lst
+print(df)
+
+print("------------------------------")
+print("------------------------------")
+
+group = df.groupby("City")
+
+print(group["Marks"].mean())

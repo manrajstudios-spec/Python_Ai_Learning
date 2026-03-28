@@ -174,8 +174,6 @@ print(df_specific.loc["Charmander", ["Height","Weight"]])
 #like from charmander to pickachu
 print(df_specific.loc["Charmander":"Pikachu",["Type1","Type2"]])
 
-
-
 #---------------------------FILTERING-----------------------------------
 
 poke_df = pd.read_csv("Learning/Basics/NumpyAndPandas/pokemons.csv",index_col= ["Name"])

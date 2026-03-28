@@ -9,6 +9,33 @@
             "Legendary":0
       },
       {
+            "No":1,
+            "Name":"Bulbasaur",
+            "Type1":"Grass",
+            "Type2":"Poison",
+            "Height":0.7,
+            "Weight":6.9,
+            "Legendary":0
+      },
+      {
+            "No":1,
+            "Name":"Bulbasaur",
+            "Type1":"Grass",
+            "Type2":"Poison",
+            "Height":0.7,
+            "Weight":6.9,
+            "Legendary":0
+      },
+      {
+            "No":1,
+            "Name":"Bulbasaur",
+            "Type1":"Grass",
+            "Type2":"Poison",
+            "Height":0.7,
+            "Weight":6.9,
+            "Legendary":0
+      },
+      {
             "No":2,
             "Name":"Ivysaur",
             "Type1":"Grass",
@@ -1339,6 +1366,42 @@
             "Height":2.2,
             "Weight":210.0,
             "Legendary":0
+      },
+      {
+            "No":150,
+            "Name":"Mewtwo",
+            "Type1":"Psychic",
+            "Type2":null,
+            "Height":2.0,
+            "Weight":122.0,
+            "Legendary":1
+      },
+      {
+            "No":150,
+            "Name":"Mewtwo",
+            "Type1":"Psychic",
+            "Type2":null,
+            "Height":2.0,
+            "Weight":122.0,
+            "Legendary":1
+      },
+      {
+            "No":150,
+            "Name":"Mewtwo",
+            "Type1":"Psychic",
+            "Type2":null,
+            "Height":2.0,
+            "Weight":122.0,
+            "Legendary":1
+      },
+      {
+            "No":150,
+            "Name":"Mewtwo",
+            "Type1":"Psychic",
+            "Type2":null,
+            "Height":2.0,
+            "Weight":122.0,
+            "Legendary":1
       },
       {
             "No":150,
