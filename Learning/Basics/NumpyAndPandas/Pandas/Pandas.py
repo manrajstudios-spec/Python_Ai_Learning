@@ -218,7 +218,7 @@ poke_dex = pd.read_csv("Learning/Basics/NumpyAndPandas/pokemons.csv")
 
 # --> Using df.drop(colomn)
 
-poke_dex = poke_dex.drop(columns=["Legendary","No"])
+poke_dex = poke_dex.drop(columns=["No"])
 
 print(poke_dex)
 
@@ -258,3 +258,9 @@ poke_dex["Legendary"] = poke_dex["Legendary"].astype(bool) # --> chnages 0 = Fal
 poke_dex = poke_dex.drop_duplicates()
 
 print(poke_dex.to_string()) 
+
+# SORTING
+
+#LETS Sort By Height
+
+print(poke_df.sort_values(by="Height",ascending=False))
