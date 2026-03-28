@@ -1,7 +1,6 @@
 import numpy as np
 import pandas as pd
 
-"""
 #<--------------------Numpy---------------------->
 
 array = np.array([[[1,2,3],[4,5,6],[7,8,9]],
@@ -109,7 +108,6 @@ print(ages[(ages > 18) & (ages < 30)])
 print("------------------------------")
 print(ages[ages % 2 != 0])
 
-"""
 
 data = {
     "Name": ["Aman", "Riya", "Kabir", "Simran", "Arjun", "Riya", "Kabir"],
@@ -172,6 +170,15 @@ for m in df["Marks"]:
 
 df["Coloumn"] = lst
 print(df)
+
+print("------------------------------")
+print("------------------------------")
+
+# Sort With Marks
+sorted = df.sort_values(by = "Marks" , ascending=False)
+print(sorted.head(3)) # To Three Students
+print(sorted.tail(3)) # Last Three
+
 
 print("------------------------------")
 print("------------------------------")
