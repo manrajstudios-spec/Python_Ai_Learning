@@ -13,7 +13,7 @@ plt.title("Laptops Sold by Asus",fontsize=20,fontfamily="Arial",color="black",fo
 plt.xlabel("Years",fontsize=20,fontfamily="Arial",color="black",fontweight="bold")
 plt.ylabel("Numbers",fontsize=20,fontfamily="Arial",color="black",fontweight="bold")
 
-plt.bar(years,numbers,color="cyan")
+plt.bar(years,numbers,color="cyan",edgecolor="black")
 # plt.barh(years,numbers,color="cyan") # to Make Horizontal Bar Graph plt.barh() is used 
 
 plt.show()
