@@ -29,8 +29,12 @@ X_test_scaled = scalar.transform(X_test)
 # Lets use KNN
 
 from sklearn.neighbors import KNeighborsClassifier 
+from sklearn.linear_model import LinearRegression
+from sklearn.tree import DecisionTreeClassifier
 
-clf = KNeighborsClassifier()
+# WE Can Use Any 3 of the above for classification type problem We just need to replace the below 
+clf = KNeighborsClassifier()# to use Linear Regression write LinearRegression in Place of KNeighbour Classifier and same for dicsionTree
+
 
 clf.fit(X_train_scaled,y_train)
 
@@ -54,3 +58,10 @@ clf.predict([to_predict]) # We Get 1 An we can check real value from y_test as b
 y_test[10] # WE Get 1 
 
 
+# %%
+
+# clf.predict_proba it gives probability that how much outcome is 0 or 1
+
+clf.predict_proba([to_predict])
+
+# %%
