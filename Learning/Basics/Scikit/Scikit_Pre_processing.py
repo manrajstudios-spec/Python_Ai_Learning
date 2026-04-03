@@ -24,12 +24,12 @@ X_train,X_test,y_train,y_test = train_test_split(X,y,test_size=0.2)
 
 # %%
 
-# Now lest Scale
+# Now lets Scale
 
 scalar = StandardScaler()
 
 X_train_scaled = scalar.fit_transform(X_train)
-X_test_scaled = scalar.fit_transform(X_test)
+X_test_scaled = scalar.transform(X_test)
 
 # %%
 
