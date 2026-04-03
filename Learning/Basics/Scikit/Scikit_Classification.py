@@ -31,6 +31,11 @@ X_test_scaled = scalar.transform(X_test)
 from sklearn.neighbors import KNeighborsClassifier 
 from sklearn.linear_model import LinearRegression
 from sklearn.tree import DecisionTreeClassifier
+from sklearn.svm import SVC # NOTE SVC DONT HAVE predict probab
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.naive_bayes import GaussianNB
+
+# NOTE SOME ARE SCALE SENSITIVE AND MAY REQUIRE HYPER PARAMS 
 
 # WE Can Use Any 3 of the above for classification type problem We just need to replace the below 
 clf = KNeighborsClassifier()# to use Linear Regression write LinearRegression in Place of KNeighbour Classifier and same for dicsionTree
