@@ -37,12 +37,17 @@ plt.scatter(X_scaled[:,0],X_scaled[:,1],c=y) # TO CHECK
 
 # DBSCAN
 
-dbscan = DBSCAN()
+dbscan = DBSCAN(eps=0.2)
 
-X , y = make_moons(n_samples=5000,noise=0.0.7)
+X , y = make_moons(n_samples=5000,noise=0.07)
 
 X_scaled = scalar.fit_transform(X)
 
 plt.scatter(X_scaled[:,0],X_scaled[:,1])
+
+dbscan.fit(X_scaled)
+
+plt.scatter(X_scaled[:,0],X_scaled[:,1],c=dbscan.labels_)
+plt.scatter(X_scaled[:,0],X_scaled[:,1],c=y) # FOR CHECKING
 
 # %%
