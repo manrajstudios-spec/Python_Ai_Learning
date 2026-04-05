@@ -2,10 +2,10 @@
 
 import pandas as pd
 import seaborn as sns
-
+import matplotlib.pyplot as plt
 # %%
 
-df = pd.read_csv("Learning/MachineLearning/Hour_Score.csv")
+df = pd.read_csv("C:/Users/manra_reeinmj/OneDrive/Desktop/Python_Ai_Learning/Learning/MachineLearning/Hour_Score.csv")
 
 # %%
 df
@@ -25,9 +25,9 @@ def Loss_Function(m,c,points):
         x = points.iloc[i].Hours
         y = points.iloc[i].Scores
 
-        tottal_error += y - (m*x - c) ** 2
+        tottal_error += (y - (m*x + c)) ** 2
 
-    tottal_error/float(len(points)) 
+    return tottal_error/float(len(points)) 
 
 # %%
 
@@ -40,11 +40,13 @@ def gradient_descent(m_now,c_now,L,points):
         x = points.iloc[i].Hours
         y = points.iloc[i].Scores
 
-        grad_m += x * (y - (m_now * x + c_now))
-        grad_c += (y - (m_now * x + c_now))
+        error = y - (m_now * x + c_now)
 
-    m = m_now - L * (-grad_m * 2) /len(points)
-    c = c_now - L * (-grad_c * 2) /len(points)
+        grad_m += x * error * (-2/len(points))
+        grad_c += error * (-2/len(points))
+
+    m = m_now - L * grad_m
+    c = c_now - L * grad_c
 
     return m , c
 
@@ -55,15 +57,17 @@ def Train(L,epochs,points):
     c = 0
 
     for i in range(epochs):
-
+        m , c = gradient_descent(m,c,L,points)
         if i % 50 == 0:
             print(f"Current {i}")
-        m , c = gradient_descent(m,c,L,points)
+            print(f"Loss is {Loss_Function(m,c,df)}")
 
     print(m,c)
 
-    sns.scatterplot(x='Hours' , y="Scores",data=df)
+    plt.scatter(df.Hours,df.Scores)
 
-    sns.lineplot(list(range(20,80)) , [m*x + c for x in range(20,80)])
-
+    plt.plot(list(range(2,10)) , [m*x + c for x in range(2,10)])
+    plt.show()
+# %%
+Train(0.0001,2000,df)
 # %%
