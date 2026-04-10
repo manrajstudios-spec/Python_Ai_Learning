@@ -2,7 +2,7 @@
 import pandas as pd
 import numpy as np
 from sklearn.preprocessing import StandardScaler
-from sklearn.model_selection import train_test_split,StratifiedShuffleSplit
+from sklearn.model_selection import train_test_split
 from imblearn.over_sampling import RandomOverSampler
 import matplotlib.pyplot as plt
 
@@ -12,13 +12,9 @@ df = pd.read_csv("/home/manraj_studios/Python/Python_Ai_Learning/Learning/Machin
 # %%
 df
 # %%
-df
-# %%
 coloumns = ["fLength","fWidth","fSize","fConc","fConc1","fAsym","fM3Long","fM3Trans","fAlpha","fDist","class"]
 
 df.columns = coloumns
-# %%
-df
 # %%
 df['class'] = (df['class'] == 'g').astype(bool).astype(int)
 df
@@ -57,31 +53,8 @@ test , X_test , y_test = Scale_Dataset(test,False)
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.metrics import classification_report
 
-knn = KNeighborsClassifier(n_neighbors=3)
+knn = KNeighborsClassifier(n_neighbors=5)
 knn.fit(X_train,y_train)
 
 print(classification_report(y_test,knn.predict(X_test)))
-# %%
-
-X = df[df.columns[:-1]]
-y = df[df.columns[-1]]
-
-split =StratifiedShuffleSplit(n_splits=1,test_size=0.2)
-for train_idx,test_idx in split.split(X,y):
-    X_train,X_test = X[train_idx] , X[test_idx]
-    y_train,y_test = y[train_idx] , y[test_idx]
-
-scalar = StandardScaler()
-
-X_train_scaled = scalar.fit_transform(X_train)
-X_test_scaled = scalar.fit(X_test)
-
-
-# %%
-knn = KNeighborsClassifier(n_neighbors=3)
-knn.fit(X_train_scaled,y_train)
-
-# %%
-print(classification_report(y_test,knn.predict(X_test)))
-
 # %%
