@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title> h{% block title %} Default Value {% endblock %}
+</title>
+</head>
+
+<body>
+    <h1> Login Or Register</h1>
+
+    <p> {{name}} </p>
+    <p> {{result}} </p>
+    <p> {{my_list}} </p>
+
+    <ul>
+        {% for item in my_list%}
+            {% if item == 4 %}
+                <li style="color: green">{{10,20}}</li>
+            {% else %}
+                <li> {{item}} </li>
+            {% endif %}
+
+        {% endfor %}
+    </ul>
+</body>
+
+</html>
