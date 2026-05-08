@@ -70,7 +70,8 @@ for epochs in range(100):
 
 with torch.no_grad():
     preds = modle(X_test)
-    predicted = (preds > 0.5).float()
+    probs = torch.sigmoid(preds)
+    predicted = (probs > 0.5).float()
     accuracy = (predicted == y_test).float().mean()
     print(accuracy.item())  
 
