@@ -22,7 +22,7 @@ X
 class ModleDataset(Dataset):
     def __init__(self,X,y):
         self.X = torch.tensor(X,dtype=torch.float32)
-        self.y = torch.tensor(y,dtype=torch.long)
+        self.y = torch.tensor(y,dtype=torch.long) 
 
     def __len__(self):
         return len(self.X)
@@ -34,10 +34,10 @@ class ModleDataset(Dataset):
 class MuiltiClass_Clf(nn.Module):
     def __init__(self):
         super().__init__()
-        self.l1 = nn.Linear(8,32)
-        self.l2 = nn.Linear(32,16)
-        self.l3 = nn.Linear(16,8)
-        self.l4 = nn.Linear(8,8)
+        self.l1 = nn.Linear(8,64)
+        self.l2 = nn.Linear(64,32)
+        self.l3 = nn.Linear(32,16)
+        self.l4 = nn.Linear(16,8)
 
         self.relu = nn.ReLU()
         self.sigmoid = nn.Sigmoid()
